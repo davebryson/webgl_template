@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>WebGL App</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+    <script type="text/javascript" src="vendor/gl-matrix-min.js"></script>
+    <script type="text/javascript" src="vendor/webgl-utils.js"></script>
+    <script type="text/javascript" src="src/app.js"></script>
+
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        void main(void)
+        {
+            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        }
+    </script>
+
+    <script id="shader-vs" type="x-shader/x-vertex">
+        uniform mat4 u_Matrix;
+        attribute vec4 a_Position;
+        void main() {
+            gl_Position = u_Matrix * a_Position;
+        }
+    </script>
+</head>
+
+
+<body>
+
+<canvas id="mapcanvas" style="border: none;" width="500" height="500"></canvas>
+
+<script type="text/javascript">
+    window.onload = init;
+
+    function init() {
+        new App.Main("mapcanvas", "shader-vs", "shader-fs");    
+    }
+
+</script>
+</body>
+
+</html>
